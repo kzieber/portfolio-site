@@ -1,6 +1,8 @@
 import emailjs from '@emailjs/browser';
 import { FC, memo, useCallback, useMemo, useState } from 'react';
 
+import ContactModal from './ContactModal';
+
 interface FormData {
   name: string;
   email: string;
@@ -18,6 +20,7 @@ const ContactForm: FC = memo(() => {
   );
 
   const [data, setData] = useState<FormData>(defaultData);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const onChange = useCallback(
     <T extends HTMLInputElement | HTMLTextAreaElement>(event: React.ChangeEvent<T>): void => {
@@ -41,12 +44,28 @@ const ContactForm: FC = memo(() => {
           { from_name: data.name, message: data.message, user_email: data.email },
           { publicKey: process.env.NEXT_PUBLIC_EMAIL_JS_PUBLIC_KEY },
         );
+        setShowModal(true);
+        setData({
+          name: '',
+          email: '',
+          message: '',
+        });
       } catch (err) {
+        setShowModal(true);
         console.error(err);
       }
     },
     [data.email, data.message, data.name],
   );
+
+  const clearModal = () => {
+    setData({
+      name: '',
+      email: '',
+      message: '',
+    });
+    setShowModal(false);
+  };
 
   const inputClasses =
     'bg-neutral-700 border-0 focus:border-0 focus:outline-none focus:ring-1 focus:ring-orange-600 rounded-md placeholder:text-neutral-400 placeholder:text-sm text-neutral-200 text-sm';
@@ -78,6 +97,7 @@ const ContactForm: FC = memo(() => {
         type="submit">
         Send Message
       </button>
+      <ContactModal clearModal={useCallback(clearModal, [])} showModal={showModal} />
     </form>
   );
 });

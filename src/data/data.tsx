@@ -1,4 +1,5 @@
 import { AcademicCapIcon, BuildingOffice2Icon, MapIcon, SparklesIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 
 import GithubIcon from '../components/Icon/GithubIcon';
 import LinkedInIcon from '../components/Icon/LinkedInIcon';
@@ -50,7 +51,7 @@ export type SectionId = (typeof SectionId)[keyof typeof SectionId];
  */
 export const heroData: Hero = {
   imageSrc: heroImage,
-  name: `I am Kevin Zieber`,
+  name: `hi, i'm kevin`,
   description: (
     <>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
@@ -117,7 +118,7 @@ export const skills: SkillGroup[] = [
       },
       {
         name: 'Material UI',
-        level: 7,
+        level: 8,
       },
       {
         name: 'NextJS | Vite | Sveltekit',
@@ -238,8 +239,10 @@ export const experience: TimelineItem[] = [
     title: 'Senior Software Engineer',
     content: (
       <p>
-        Describe work, special projects, notable achievements, what technologies you have been working with, and
-        anything else that would be useful for an employer to know.
+        As a Senior Software Engineer, I have worked with clients in the healthcare, hospitality, and entertainment
+        sectors to build performant experiences that delight users and serve the needs of my clients. For the past few
+        years, I&apos;ve been building cutting edge, modern web experiences for clients using tech including NextJS,
+        React, Material UI, AWS, Google Cloud Platform, and GraphQl.
       </p>
     ),
   },
@@ -249,8 +252,11 @@ export const experience: TimelineItem[] = [
     title: 'Software Engineer',
     content: (
       <p>
-        Describe work, special projects, notable achievements, what technologies you have been working with, and
-        anything else that would be useful for an employer to know.
+        During my time as a Software Engineer at Slalom _Build, I worked with enterprise clients in the{' '}
+        <Link className="font-bold" href="https://www.slalombuild.com/healthcare" target="_blank">
+          healthcare sector
+        </Link>{' '}
+        to build better experiences for patients utilizing React, GatsbyJS, Jest, and AWS.
       </p>
     ),
   },
