@@ -45,15 +45,16 @@ const ContactForm: FC = memo(() => {
           { publicKey: process.env.NEXT_PUBLIC_EMAIL_JS_PUBLIC_KEY },
         );
         setShowModal(true);
-        setData({
-          name: '',
-          email: '',
-          message: '',
-        });
       } catch (err) {
         setShowModal(true);
         console.error(err);
       }
+
+      setData({
+        name: '',
+        email: '',
+        message: '',
+      });
     },
     [data.email, data.message, data.name],
   );
