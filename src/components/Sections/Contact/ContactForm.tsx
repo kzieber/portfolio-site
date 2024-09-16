@@ -3,7 +3,7 @@ import { FC, memo, useCallback, useMemo, useState } from 'react';
 
 import ContactModal from './ContactModal';
 
-interface FormData {
+export interface ContactFormData {
   name: string;
   email: string;
   message: string;
@@ -19,14 +19,14 @@ const ContactForm: FC = memo(() => {
     [],
   );
 
-  const [data, setData] = useState<FormData>(defaultData);
+  const [data, setData] = useState<ContactFormData>(defaultData);
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const onChange = useCallback(
     <T extends HTMLInputElement | HTMLTextAreaElement>(event: React.ChangeEvent<T>): void => {
       const { name, value } = event.target;
 
-      const fieldData: Partial<FormData> = { [name]: value };
+      const fieldData: Partial<ContactFormData> = { [name]: value };
 
       setData({ ...data, ...fieldData });
     },
@@ -59,19 +59,21 @@ const ContactForm: FC = memo(() => {
     [data.email, data.message, data.name],
   );
 
-  const clearModal = () => {
-    setShowModal(false);
+  const clearModal = useCallback(() => {
     setData({
       name: '',
       email: '',
       message: '',
     });
-  };
+    setShowModal(false);
+  }, []);
 
   const inputClasses =
     'bg-neutral-700 border-0 focus:border-0 focus:outline-none focus:ring-1 focus:ring-orange-600 rounded-md placeholder:text-neutral-400 placeholder:text-sm text-neutral-200 text-sm';
 
-  return (
+  return showModal ? (
+    <ContactModal clearModal={clearModal} showModal={showModal} />
+  ) : (
     <form className="grid min-h-[320px] grid-cols-1 gap-y-4" method="POST" onSubmit={handleSendMessage}>
       <input className={inputClasses} name="name" onChange={onChange} placeholder="Name" required type="text" />
       <input
@@ -98,7 +100,6 @@ const ContactForm: FC = memo(() => {
         type="submit">
         Send Message
       </button>
-      <ContactModal clearModal={useCallback(clearModal, [])} showModal={showModal} />
     </form>
   );
 });

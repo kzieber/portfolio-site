@@ -55,9 +55,9 @@ export const heroData: Hero = {
   description: (
     <>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        I'm a southern California based <strong className="text-stone-100">Full Stack Software Engineer</strong>,
-        currently working at <strong className="text-stone-100">Slalom _Build</strong> building modern, performant tech
-        for enterprise clients.
+        I'm a southern California-based <strong className="text-stone-100">Full Stack Software Engineer</strong>,
+        currently building modern, performant tech for enterprise clients at{' '}
+        <strong className="text-stone-100">Slalom _Build</strong>
       </p>
     </>
   ),
@@ -75,7 +75,7 @@ export const heroData: Hero = {
  */
 export const aboutData: About = {
   profileImageSrc: profilepic,
-  description: ``,
+  description: `portrait of kevin`,
   aboutItems: [
     { label: 'Where you can find me', text: 'Mojave Desert, CA', Icon: MapIcon },
     { label: 'Education', text: 'Ohio University | Full Stack Academy', Icon: AcademicCapIcon },
@@ -97,11 +97,11 @@ export const skills: SkillGroup[] = [
       },
       {
         name: 'Spanish',
-        level: 4,
+        level: 6,
       },
       {
         name: 'Russian',
-        level: 6,
+        level: 5,
       },
     ],
   },

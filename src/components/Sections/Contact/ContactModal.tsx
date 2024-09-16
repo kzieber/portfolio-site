@@ -23,11 +23,11 @@ export default function ContactModal({ showModal, clearModal }: ContactModalProp
                 </div>
                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                   <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
-                    It's in the mail!
+                    It's in the mail
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Your message has been sent! Please allow me a day or two to get back to you
+                    <p className="text-sm text-gray-600">
+                      Your message has been sent! Please allow me a day or two to get back to you.
                     </p>
                   </div>
                 </div>
