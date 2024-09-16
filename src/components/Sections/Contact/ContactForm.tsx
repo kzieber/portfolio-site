@@ -1,5 +1,5 @@
 import emailjs from '@emailjs/browser';
-import { FC, memo, useCallback, useMemo, useState } from 'react';
+import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
 
 import ContactModal from './ContactModal';
 
@@ -45,11 +45,6 @@ const ContactForm: FC = memo(() => {
           { publicKey: process.env.NEXT_PUBLIC_EMAIL_JS_PUBLIC_KEY },
         );
         setShowModal(true);
-        setData({
-          name: '',
-          email: '',
-          message: '',
-        });
       } catch (err) {
         setShowModal(true);
         console.error(err);
@@ -59,12 +54,12 @@ const ContactForm: FC = memo(() => {
   );
 
   const clearModal = () => {
+    setShowModal(false);
     setData({
       name: '',
       email: '',
       message: '',
     });
-    setShowModal(false);
   };
 
   const inputClasses =
