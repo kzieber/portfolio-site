@@ -1,5 +1,5 @@
 import emailjs from '@emailjs/browser';
-import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { FC, memo, useCallback, useMemo, useState } from 'react';
 
 import ContactModal from './ContactModal';
 
