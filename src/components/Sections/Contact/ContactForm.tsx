@@ -1,4 +1,5 @@
-import {FC, memo, useCallback, useMemo, useState} from 'react';
+import emailjs from '@emailjs/browser';
+import { FC, memo, useCallback, useMemo, useState } from 'react';
 
 interface FormData {
   name: string;
@@ -20,11 +21,11 @@ const ContactForm: FC = memo(() => {
 
   const onChange = useCallback(
     <T extends HTMLInputElement | HTMLTextAreaElement>(event: React.ChangeEvent<T>): void => {
-      const {name, value} = event.target;
+      const { name, value } = event.target;
 
-      const fieldData: Partial<FormData> = {[name]: value};
+      const fieldData: Partial<FormData> = { [name]: value };
 
-      setData({...data, ...fieldData});
+      setData({ ...data, ...fieldData });
     },
     [data],
   );
@@ -32,12 +33,19 @@ const ContactForm: FC = memo(() => {
   const handleSendMessage = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      /**
-       * This is a good starting point to wire up your form submission logic
-       * */
-      console.log('Data to send: ', data);
+
+      try {
+        await emailjs.send(
+          'contact-form',
+          'contact_form',
+          { from_name: data.name, message: data.message, user_email: data.email },
+          { publicKey: process.env.NEXT_PUBLIC_EMAIL_JS_PUBLIC_KEY },
+        );
+      } catch (err) {
+        console.error(err);
+      }
     },
-    [data],
+    [data.email, data.message, data.name],
   );
 
   const inputClasses =
