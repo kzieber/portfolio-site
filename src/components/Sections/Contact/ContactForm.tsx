@@ -49,6 +49,12 @@ const ContactForm: FC = memo(() => {
         setShowModal(true);
         console.error(err);
       }
+
+      setData({
+        name: '',
+        email: '',
+        message: '',
+      });
     },
     [data.email, data.message, data.name],
   );
