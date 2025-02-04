@@ -34,7 +34,7 @@ export const homePageMeta: HomepageMeta = {
  * Section definition
  */
 export const SectionId = {
-  Hero: 'hero',
+  Hero: 'home',
   About: 'about',
   Contact: 'contact',
   Portfolio: 'portfolio',
@@ -75,7 +75,8 @@ export const heroData: Hero = {
  */
 export const aboutData: About = {
   profileImageSrc: profilepic,
-  description: `portrait of kevin`,
+  description:
+    "I am a writer, engineer, and hospitality professional. I've been building and tinkering with technology since the MySpace era, and I love bringing ideas to life with technology.",
   aboutItems: [
     { label: 'Where you can find me', text: 'Mojave Desert, CA', Icon: MapIcon },
     { label: 'Education', text: 'Ohio University | Full Stack Academy', Icon: AcademicCapIcon },
